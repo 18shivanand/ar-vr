@@ -1,10 +1,11 @@
 #1
 
+rotate.cs
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class box : MonoBehaviour
+public class rotate : MonoBehaviour
 {
     public float moveSpeed;
 
@@ -17,7 +18,92 @@ public class box : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        transform.Rotate(1,0,0);
+ 
+    }
+}
+
+Or 
+
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using System;
+
+public class rotate : MonoBehaviour
+{
+    public float moveSpeed;
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        moveSpeed = 500f;
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        //Vector3.up is Vector3(0, 1, 0) rotate along Y axis
+        if (Input.GetKey(KeyCode.Z))
+            transform.Rotate(Vector3.up * moveSpeed * Time.deltaTime);
+
+        if (Input.GetKey(KeyCode.X))
+            transform.Rotate(-Vector3.up * moveSpeed * Time.deltaTime);
+    }
+}
+
+move.cs
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class move : MonoBehaviour
+{
+    public float moveSpeed;
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        moveSpeed = 5f;
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        
         transform.Translate(moveSpeed * Input.GetAxis("Horizontal") * Time.deltaTime, 0f, moveSpeed * Input.GetAxis("Vertical") * Time.deltaTime);
+    }
+}
+scale.cs
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class scale : MonoBehaviour
+{
+    // Start is called before the first frame update
+    public float size=0.1f;
+    // public Vector3 scale change d
+    void Start()
+    {
+        
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        if(Input.GetKey("e"))
+        transform.localScale+=new Vector3(size,0,0);
+        else if(Input.GetKey("d"))
+        transform.localScale-=new Vector3(size,0,0);
+        else if(Input.GetKey("r"))
+        transform.localScale+=new Vector3(0,size,0);
+        else if(Input.GetKey("f"))
+        transform.localScale-=new Vector3(0,size,0);
+        else if(Input.GetKey("t"))
+        transform.localScale+=new Vector3(0,0,size);
+        else if(Input.GetKey("g"))
+        transform.localScale-=new Vector3(0,0,size);
     }
 }
 
@@ -121,19 +207,21 @@ using UnityEngine;
 
 public class move : MonoBehaviour
 {
+    
     // Start is called before the first frame update
-    public float move;
+    public float movespeed;
     void Start()
     {
-        move=5f;
+        movespeed = 5f;
     }
 
     // Update is called once per frame
     void Update()
     {
-        transform.Translate(0f,0f,move*Time.deltaTime*Input.GetAxis("Vertical"));
-        transform.Rotate(0f,0f,move*Time.deltaTime*Input.GetAxis("Horizontal"));
+        transform.Translate(0f, 0f, movespeed * Time.deltaTime * Input.GetAxis("Vertical"));
+        transform.Rotate(0f, movespeed * Time.deltaTime * Input.GetAxis("Horizontal"), 0f);
     }
+
 }
 
 
