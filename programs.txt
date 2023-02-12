@@ -230,16 +230,28 @@ public class move : MonoBehaviour
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
-public class ChangeScene : MonoBehaviour
-{    
-	public string SceneName; 
-       
-	public void ChangeToScene()    
-	{        
-		SceneManager.LoadScene(SceneName);    
-	}
+public class appear : MonoBehaviour
+{
+    public GameObject car;
+    public GameObject bus;
+
+    void start()
+    {
+        bus.SetActive(false);
+        car.SetActive(false);
+    }
+
+    public void openBus()
+    {
+        bus.SetActive(true);
+        car.SetActive(false);
+    }
+    public void openCar()
+    {
+        car.SetActive(true);
+        bus.SetActive(false);
+    }
 }
 
 
