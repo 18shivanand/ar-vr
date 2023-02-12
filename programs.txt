@@ -114,6 +114,29 @@ public class box : MonoBehaviour
     }
 }
 
+#4
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class move : MonoBehaviour
+{
+    // Start is called before the first frame update
+    public float movespeed;
+    void Start()
+    {
+        movespeed=5f;
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        transform.Translate(0f,0f,move*Time.deltaTime*Input.GetAxis("Vertical"));
+        transform.Rotate(0f,0f,move*Time.deltaTime*Input.GetAxis("Horizontal"));
+    }
+}
+
+
 #6
 
 using System.Collections;
